@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import { GlobalStyle } from './Components/Style/GlobalStyles.js';
+import { AddTask } from './Components/Addtask/Addtask';
+import { TaskList } from './Components/Tasklist/Tasklist';
+import { useTasks } from './Components/Hooks/useTasks';
+import { useEditTask } from './Components/Hooks/useEditTask';
+
 
 function App() {
+  const Tasks = useTasks();
+  const EditTask = useEditTask();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <GlobalStyle/>
+      <div className="App">
+        <AddTask { ...Tasks } { ...EditTask }/>
+        <TaskList { ...Tasks } { ...EditTask }/>
     </div>
+    </>
   );
 }
 
